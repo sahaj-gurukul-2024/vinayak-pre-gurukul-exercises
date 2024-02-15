@@ -1,13 +1,12 @@
 package org.example
 
 class WinnerValidator() {
-    var rows = 3
-    var column = 9
+    val rows = 3
+    val column = 9
     var topRow: MutableList<Int> = mutableListOf()
     var BottomRow: MutableList<Int> = mutableListOf()
     var anyFive: MutableList<Int> = mutableListOf()
     var Status: String = "Rejected"
-    //val twoDArray: MutableList<MutableList<Int>> = MutableList(rows) { MutableList(column) { 0 } }
 
     fun validateOneByOne(ticket: MutableList<MutableList<Int>>, numberAnounced: Int) {
         for (i in 0 until rows) {
