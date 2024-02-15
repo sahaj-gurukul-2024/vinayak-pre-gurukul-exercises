@@ -11,8 +11,10 @@ class WinnerValidator() {
 
     fun validateOneByOne(ticket: MutableList<MutableList<Int>>, numberAnounced: Int) {
         for (i in 0 until rows) {
-            for (j in 0 until rows) {
-                if (ticket[i][j] == numberAnounced) {
+            for (j in 0 until column) {
+                val ticketval=ticket[i][j]
+                println(ticketval)
+                if (ticketval == numberAnounced) {
                     if (i == 0) {
                         topRow.add(numberAnounced)
                     } else if (i == 2) {
@@ -28,6 +30,9 @@ class WinnerValidator() {
     fun reciveTheInput(ticket: MutableList<MutableList<Int>>, numberSequence: MutableList<Int>, claim: String): String {
         for (i in 0 until numberSequence.size) {
             validateOneByOne(ticket, numberSequence[i])
+            println(topRow)
+            println(BottomRow)
+            println(anyFive)
             if ((topRow.size == 5 && claim == "Top Row") || (BottomRow.size == 5 && claim == "Bottom Row") || (anyFive.size == 5 || claim == "Any Five")) {
                 Status = "Accepted"
                 return Status
