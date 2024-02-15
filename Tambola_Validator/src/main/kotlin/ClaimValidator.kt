@@ -26,8 +26,8 @@ class ClaimValidator {
     }
 
     fun validateClaim(ticket: MutableList<MutableList<Int>>, announcedNumberSequence: MutableList<Int>, claim: String): String {
-        for (i in announcedNumberSequence.indices) {
-            validateOneByOne(ticket, announcedNumberSequence[i])
+        for (announcedNumber in announcedNumberSequence) {
+            validateOneByOne(ticket, announcedNumber)
         }
 
         val lastAnnouncedNumber = announcedNumberSequence.last()
