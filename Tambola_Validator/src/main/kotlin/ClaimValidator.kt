@@ -13,12 +13,16 @@ class ClaimValidator {
             for (j in 0 until column) {
                 val ticketValue = ticket[i][j]
                 if (ticketValue == announcedNumber) {
-                    if (i == 0) {
-                        topRow.add(announcedNumber)
-                    } else if (i == 2) {
-                        bottomRow.add(announcedNumber)
-                    } else {
-                        firstFive.add(announcedNumber)
+                    when (i) {
+                        0 -> {
+                            topRow.add(announcedNumber)
+                        }
+                        2 -> {
+                            bottomRow.add(announcedNumber)
+                        }
+                        else -> {
+                            firstFive.add(announcedNumber)
+                        }
                     }
                 }
             }
