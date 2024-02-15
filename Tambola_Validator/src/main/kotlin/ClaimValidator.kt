@@ -26,11 +26,11 @@ class ClaimValidator {
     }
 
     fun validateClaim(ticket: MutableList<MutableList<Int>>, announcedNumberSequence: MutableList<Int>, claim: String): String {
-        for (i in 0 until announcedNumberSequence.size) {
+        for (i in announcedNumberSequence.indices) {
             validateOneByOne(ticket, announcedNumberSequence[i])
         }
 
-        val lastAnnouncedNumber = announcedNumberSequence[announcedNumberSequence.size-1]
+        val lastAnnouncedNumber = announcedNumberSequence.last()
 
         if(topRow.contains(lastAnnouncedNumber)||bottomRow.contains(lastAnnouncedNumber)||firstFive.contains(lastAnnouncedNumber)){
             if ((topRow.size == 5 && claim == "Top Row") || (bottomRow.size == 5 && claim == "Bottom Row") || (firstFive.size == 5 || claim == "Any Five")) {
