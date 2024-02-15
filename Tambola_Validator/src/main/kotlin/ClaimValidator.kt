@@ -1,12 +1,12 @@
 package org.example
 
 class ClaimValidator {
-    val rows = 3
-    val column = 9
-    var topRow = mutableListOf<Int>()
-    var bottomRow = mutableListOf<Int>()
-    var firstFive = mutableListOf<Int>()
-    var status = "Rejected"
+    private val rows = 3
+    private val column = 9
+    private var topRow = mutableListOf<Int>()
+    private var bottomRow = mutableListOf<Int>()
+    private var firstFive = mutableListOf<Int>()
+    private var status = "Rejected"
 
     private fun validateOneByOne(ticket: MutableList<MutableList<Int>>, announcedNumber: Int) {
         for (i in 0 until rows) {
