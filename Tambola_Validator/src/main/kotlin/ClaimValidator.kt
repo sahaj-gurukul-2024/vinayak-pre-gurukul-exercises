@@ -1,6 +1,6 @@
 package org.example
 
-class WinnerValidator() {
+class ClaimValidator {
     val rows = 3
     val column = 9
     var topRow = mutableListOf<Int>()
@@ -8,7 +8,7 @@ class WinnerValidator() {
     var firstFive = mutableListOf<Int>()
     var status = "Rejected"
 
-    fun validateOneByOne(ticket: MutableList<MutableList<Int>>, announcedNumber: Int) {
+    private fun validateOneByOne(ticket: MutableList<MutableList<Int>>, announcedNumber: Int) {
         for (i in 0 until rows) {
             for (j in 0 until column) {
                 val ticketValue = ticket[i][j]
@@ -25,7 +25,7 @@ class WinnerValidator() {
         }
     }
 
-    fun reciveTheInput(ticket: MutableList<MutableList<Int>>, announcedNumberSequence: MutableList<Int>, claim: String): String {
+    fun validateClaim(ticket: MutableList<MutableList<Int>>, announcedNumberSequence: MutableList<Int>, claim: String): String {
         for (i in 0 until announcedNumberSequence.size) {
             validateOneByOne(ticket, announcedNumberSequence[i])
         }

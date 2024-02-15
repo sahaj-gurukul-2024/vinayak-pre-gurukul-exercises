@@ -1,4 +1,4 @@
-import org.example.WinnerValidator
+import org.example.ClaimValidator
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -11,8 +11,8 @@ class MainKtTest(){
             mutableListOf(9,0,25,0,0,56,64,0,83)
         )
         val numberList:MutableList<Int> = mutableListOf(90, 4, 46, 63, 89, 16, 76, 48 )
-        val validate=WinnerValidator()
-        val result=validate.reciveTheInput(tambolaBoard, numberList,"Top Row")
+        val validate=ClaimValidator()
+        val result=validate.validateClaim(tambolaBoard, numberList,"Top Row")
         assertEquals("Accepted",result)
     }
     @Test
@@ -23,8 +23,8 @@ class MainKtTest(){
             mutableListOf(9,0,25,0,0,56,64,0,83)
         )
         val numberList:MutableList<Int> = mutableListOf(90, 4, 46, 63, 89, 16, 76, 48, 12 )
-        val validate=WinnerValidator()
-        val result=validate.reciveTheInput(tambolaBoard, numberList,"Top Row")
+        val validate=ClaimValidator()
+        val result=validate.validateClaim(tambolaBoard, numberList,"Top Row")
         assertEquals("Rejected",result)
     }
 }
