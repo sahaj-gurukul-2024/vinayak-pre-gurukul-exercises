@@ -91,4 +91,34 @@ class ClaimValidatorTest{
 
         assertEquals("Rejected", result)
     }
+
+    @Test
+    fun `check if middle row wins`() {
+        val ticket = mutableListOf(
+            mutableListOf(7,-1,23,38,-1,52,-1,-1,80),
+            mutableListOf(4,16,-1,-1,48,-1,63,76,-1),
+            mutableListOf(9,-1,25,-1,-1,56,64,-1,83)
+        )
+        val announcedNumberSequence = mutableListOf(9, 25, 46, 56, 89, 64, 76, 83)
+        val validator = ClaimValidator()
+
+        val result = validator.validateClaim(ticket, announcedNumberSequence, "Middle Row")
+
+        assertEquals("Accepted", result)
+    }
+
+    @Test
+    fun `check if middle row losses`() {
+        val ticket = mutableListOf(
+            mutableListOf(7,-1,23,38,-1,52,-1,-1,80),
+            mutableListOf(4,16,-1,-1,48,-1,63,76,-1),
+            mutableListOf(9,-1,25,-1,-1,56,64,-1,83)
+        )
+        val announcedNumbers = mutableListOf(9, 25, 83, 56, 89, 64, 76, 8)
+        val validator = ClaimValidator()
+
+        val result = validator.validateClaim(ticket, announcedNumbers, "Middle Row")
+
+        assertEquals("Rejected", result)
+    }
 }

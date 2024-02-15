@@ -4,8 +4,8 @@ class ClaimValidator {
     private val rows = 3
     private val column = 9
     private var topRow = mutableListOf<Int>()
+    private var middleRow = mutableListOf<Int>()
     private var bottomRow = mutableListOf<Int>()
-    private var firstFive = mutableListOf<Int>()
     private var status = "Rejected"
 
     private fun validateOneByOne(ticket: MutableList<MutableList<Int>>, announcedNumber: Int) {
@@ -17,11 +17,11 @@ class ClaimValidator {
                         0 -> {
                             topRow.add(announcedNumber)
                         }
+                        1 -> {
+                            middleRow.add(announcedNumber)
+                        }
                         2 -> {
                             bottomRow.add(announcedNumber)
-                        }
-                        else -> {
-                            firstFive.add(announcedNumber)
                         }
                     }
                 }
@@ -36,8 +36,8 @@ class ClaimValidator {
 
         val lastAnnouncedNumber = announcedNumberSequence.last()
 
-        if(topRow.contains(lastAnnouncedNumber)||bottomRow.contains(lastAnnouncedNumber)||firstFive.contains(lastAnnouncedNumber)){
-            if ((topRow.size == 5 && claim == "Top Row") || (bottomRow.size == 5 && claim == "Bottom Row") || (firstFive.size == 5 || claim == "Any Five")) {
+        if(topRow.contains(lastAnnouncedNumber)||bottomRow.contains(lastAnnouncedNumber)||middleRow.contains(lastAnnouncedNumber)){
+            if ((topRow.size == 5 && claim == "Top Row") || (middleRow.size == 5 || claim == "Middle Row") || (bottomRow.size == 5 && claim == "Bottom Row") || (bottomRow.size + topRow.size + middleRow.size == 5 || claim == "Any Five")) {
                 status = "Accepted"
                 return status
             }
