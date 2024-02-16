@@ -37,7 +37,7 @@ class ClaimValidator {
         val lastAnnouncedNumber = announcedNumberSequence.last()
 
         if(anyRowMatchContains(lastAnnouncedNumber)){
-            if ((topRowMatches.size == 5 && claim == "Top Row") || (middleRowMatches.size == 5 && claim == "Middle Row") || (bottomRowMatches.size == 5 && claim == "Bottom Row") || (bottomRowMatches.size + topRowMatches.size + middleRowMatches.size == 5 && claim == "Any Five") || (bottomRowMatches.size + topRowMatches.size + middleRowMatches.size == 15 && claim == "Full House")) {
+            if (isTopRowMatchValid(claim) || isMiddleRowMatchValid(claim) || isBottomRowMatchValid(claim) || isAnyFiveMatchValid(claim) || isFullHouseMatchValid(claim)) {
                 status = "Accepted"
                 return status
             }
@@ -45,6 +45,18 @@ class ClaimValidator {
 
         return status
     }
+
+    private fun isFullHouseMatchValid(claim: String) =
+        (bottomRowMatches.size + topRowMatches.size + middleRowMatches.size == 15 && claim == "Full House")
+
+    private fun isAnyFiveMatchValid(claim: String) =
+        (bottomRowMatches.size + topRowMatches.size + middleRowMatches.size == 5 && claim == "Any Five")
+
+    private fun isBottomRowMatchValid(claim: String) = (bottomRowMatches.size == 5 && claim == "Bottom Row")
+
+    private fun isMiddleRowMatchValid(claim: String) = (middleRowMatches.size == 5 && claim == "Middle Row")
+
+    private fun isTopRowMatchValid(claim: String) = (topRowMatches.size == 5 && claim == "Top Row")
 
     private fun anyRowMatchContains(lastAnnouncedNumber: Int) =
         topRowMatches.contains(lastAnnouncedNumber) || bottomRowMatches.contains(lastAnnouncedNumber) || middleRowMatches.contains(
