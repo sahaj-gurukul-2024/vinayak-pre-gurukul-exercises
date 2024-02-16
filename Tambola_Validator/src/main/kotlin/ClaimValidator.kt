@@ -36,7 +36,7 @@ class ClaimValidator {
 
         val lastAnnouncedNumber = announcedNumberSequence.last()
 
-        if(topRowMatches.contains(lastAnnouncedNumber)||bottomRowMatches.contains(lastAnnouncedNumber)||middleRowMatches.contains(lastAnnouncedNumber)){
+        if(anyRowMatchContains(lastAnnouncedNumber)){
             if ((topRowMatches.size == 5 && claim == "Top Row") || (middleRowMatches.size == 5 && claim == "Middle Row") || (bottomRowMatches.size == 5 && claim == "Bottom Row") || (bottomRowMatches.size + topRowMatches.size + middleRowMatches.size == 5 && claim == "Any Five") || (bottomRowMatches.size + topRowMatches.size + middleRowMatches.size == 15 && claim == "Full House")) {
                 status = "Accepted"
                 return status
@@ -45,4 +45,9 @@ class ClaimValidator {
 
         return status
     }
+
+    private fun anyRowMatchContains(lastAnnouncedNumber: Int) =
+        topRowMatches.contains(lastAnnouncedNumber) || bottomRowMatches.contains(lastAnnouncedNumber) || middleRowMatches.contains(
+            lastAnnouncedNumber
+        )
 }
