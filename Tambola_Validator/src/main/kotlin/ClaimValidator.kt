@@ -3,9 +3,9 @@ package org.example
 class ClaimValidator {
     private val ticketRows = 3
     private val ticketColumns = 9
-    private var topRow = mutableListOf<Int>()
-    private var middleRow = mutableListOf<Int>()
-    private var bottomRow = mutableListOf<Int>()
+    private var topRowMatches = mutableListOf<Int>()
+    private var middleRowMatches = mutableListOf<Int>()
+    private var bottomRowMatches = mutableListOf<Int>()
     private var status = "Rejected"
 
     private fun validateOneByOne(ticket: TambolaTicket, announcedNumber: Int) {
@@ -15,13 +15,13 @@ class ClaimValidator {
                 if (ticketValue == announcedNumber) {
                     when (i) {
                         0 -> {
-                            topRow.add(announcedNumber)
+                            topRowMatches.add(announcedNumber)
                         }
                         1 -> {
-                            middleRow.add(announcedNumber)
+                            middleRowMatches.add(announcedNumber)
                         }
                         2 -> {
-                            bottomRow.add(announcedNumber)
+                            bottomRowMatches.add(announcedNumber)
                         }
                     }
                 }
@@ -36,8 +36,8 @@ class ClaimValidator {
 
         val lastAnnouncedNumber = announcedNumberSequence.last()
 
-        if(topRow.contains(lastAnnouncedNumber)||bottomRow.contains(lastAnnouncedNumber)||middleRow.contains(lastAnnouncedNumber)){
-            if ((topRow.size == 5 && claim == "Top Row") || (middleRow.size == 5 && claim == "Middle Row") || (bottomRow.size == 5 && claim == "Bottom Row") || (bottomRow.size + topRow.size + middleRow.size == 5 && claim == "Any Five") || (bottomRow.size + topRow.size + middleRow.size == 15 && claim == "Full House")) {
+        if(topRowMatches.contains(lastAnnouncedNumber)||bottomRowMatches.contains(lastAnnouncedNumber)||middleRowMatches.contains(lastAnnouncedNumber)){
+            if ((topRowMatches.size == 5 && claim == "Top Row") || (middleRowMatches.size == 5 && claim == "Middle Row") || (bottomRowMatches.size == 5 && claim == "Bottom Row") || (bottomRowMatches.size + topRowMatches.size + middleRowMatches.size == 5 && claim == "Any Five") || (bottomRowMatches.size + topRowMatches.size + middleRowMatches.size == 15 && claim == "Full House")) {
                 status = "Accepted"
                 return status
             }
