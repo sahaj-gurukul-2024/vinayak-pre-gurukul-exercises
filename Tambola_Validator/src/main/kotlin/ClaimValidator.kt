@@ -8,10 +8,10 @@ class ClaimValidator {
     private var bottomRow = mutableListOf<Int>()
     private var status = "Rejected"
 
-    private fun validateOneByOne(ticket: MutableList<MutableList<Int>>, announcedNumber: Int) {
+    private fun validateOneByOne(ticket: TambolaTicket, announcedNumber: Int) {
         for (i in 0 until ticketRows) {
             for (j in 0 until ticketColumns) {
-                val ticketValue = ticket[i][j]
+                val ticketValue = ticket.getElement(i, j)
                 if (ticketValue == announcedNumber) {
                     when (i) {
                         0 -> {
@@ -29,7 +29,7 @@ class ClaimValidator {
         }
     }
 
-    fun validateClaim(ticket: MutableList<MutableList<Int>>, announcedNumberSequence: MutableList<Int>, claim: String): String {
+    fun validateClaim(ticket: TambolaTicket, announcedNumberSequence: MutableList<Int>, claim: String): String {
         for (announcedNumber in announcedNumberSequence) {
             validateOneByOne(ticket, announcedNumber)
         }
