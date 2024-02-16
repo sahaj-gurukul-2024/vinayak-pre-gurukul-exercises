@@ -1,16 +1,16 @@
 package org.example
 
 class ClaimValidator {
-    private val rows = 3
-    private val column = 9
+    private val ticketRows = 3
+    private val ticketColumns = 9
     private var topRow = mutableListOf<Int>()
     private var middleRow = mutableListOf<Int>()
     private var bottomRow = mutableListOf<Int>()
     private var status = "Rejected"
 
     private fun validateOneByOne(ticket: MutableList<MutableList<Int>>, announcedNumber: Int) {
-        for (i in 0 until rows) {
-            for (j in 0 until column) {
+        for (i in 0 until ticketRows) {
+            for (j in 0 until ticketColumns) {
                 val ticketValue = ticket[i][j]
                 if (ticketValue == announcedNumber) {
                     when (i) {
